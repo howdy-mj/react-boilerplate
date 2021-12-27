@@ -1,5 +1,5 @@
 curl \
-  -X POST https://wh.jandi.com/connect-api/webhook/13090024/818e56380fb15f6851b8e3cd05d90008 \
+  -X POST https://wh.jandi.com/connect-api/webhook/13090024/1c0235fa48873c545fcdaa622ebff38f \
   -H "Accept: application/vnd.tosslab.jandi-v2+json" \
   -H "Content-Type: application/json" \
   --data-binary \
