@@ -14,7 +14,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "preversion": "git-branch-is main && echo Preversion checks passed.",
+    "version": "standard-version",
+    "release": "npm run version && git push --follow-tags"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -52,8 +55,10 @@
     "@types/react-dom": "^17.0.9",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-react": "^7.28.0",
+    "git-branch-is": "^4.0.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.1.4",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "standard-version": "^9.3.2"
   }
 }
