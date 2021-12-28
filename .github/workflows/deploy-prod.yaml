@@ -31,4 +31,4 @@ jobs:
           body: ${{ steps.get_release_notes.outputs.release_notes }}
 
       - name: Trigger AWS Amplify Deploy
-        run: curl -X POST -d {} "https://webhooks.amplify.ap-northeast-2.amazonaws.com/prod/webhooks?id=a7572ecc-b341-405e-90df-2d0086153618&token=Hh8Sm56vc3ZCNYawf2SMY1E324RjZbXYM6SEZEU&amp;operation=startbuild" -H "Content-Type:application/json"
+        run: curl -X POST -d {} "https://webhooks.amplify.ap-northeast-2.amazonaws.com/prod/webhooks?id=a7572ecc-b341-405e-90df-2d0086153618&token=Hh8Sm56vc3ZCNYawf2SMY1E324RjZbXYM6SEZEU&operation=startbuild" -H "Content-Type:application/json"
