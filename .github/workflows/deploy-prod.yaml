@@ -1,0 +1,34 @@
+name: deploy-prod
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+
+      - name: Cache node modules
+        uses: actions/cache@v2.1.2
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.OS }}-build-${{ runner.OS }}
+
+      - name: Get Release Note
+        uses: yashanand1910/standard-release-notes@v1.2.1
+        id: get_release_notes
+        with:
+          changelog_path: ./CHANGELOG.md
+          version: ${{ github.ref }}
+
+      - name: Create Release Note
+        uses: softprops/action-gh-release@v1
+        with:
+          body: ${{ steps.get_release_notes.outputs.release_notes }}
+
+      - name: Trigger AWS Amplify Deploy
+        run: curl -X POST -d {} "https://webhooks.amplify.ap-northeast-2.amazonaws.com/prod/webhooks?id=a7572ecc-b341-405e-90df-2d0086153618&token=Hh8Sm56vc3ZCNYawf2SMY1E324RjZbXYM6SEZEU&amp;operation=startbuild" -H "Content-Type:application/json"
